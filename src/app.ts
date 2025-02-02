@@ -1,12 +1,10 @@
-import express, {Request, Response} from "express";
+import express from "express";
+import Route from "./infra/routes/main.route";
 import "dotenv/config";
 
 const app = express();
 
 app.use(express.json());
-
-app.use("/", (request: Request, response: Response) => {
-  response.send("Running 👍");
-})
+app.use("/", Route);
 
 export { app };
