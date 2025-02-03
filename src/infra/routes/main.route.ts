@@ -1,8 +1,8 @@
-import { Router, NextFunction } from "express";
-import UserController from "../controllers/User.controller";
+import { Router } from "express";
+import ProductsController from "../controllers/Products.controller";
 
 const Route = Router();
 
-Route.get("/", UserController.show);
+Route.get("/", ProductsController.show);
 
 export default Route;
