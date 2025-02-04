@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import dummyjsonApi  from "../services/dummyjsonApi";
+import dummyjsonApi  from "../../providers/dummyjsonApi";
 
 const ProductsController = {
 
