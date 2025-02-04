@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { HttpError } from "../../../shared/errors/http-error.entity";
+import { HttpError } from "../../../shared/errors/http-error.class";
 import dummyjsonApi  from "../../providers/dummyjsonApi";
 
 const ProductsController = {

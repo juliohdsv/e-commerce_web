@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { HttpError } from "./http-error.entity";
+import { HttpError } from "./http-error.class";
+
 
 export const errorHandler = (
   err: any,
