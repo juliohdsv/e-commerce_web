@@ -2,17 +2,17 @@ import { Request, Response } from "express";
 import { HttpError } from "../../../shared/errors/http-error.class";
 import dummyjsonApi  from "../../providers/dummyjsonApi";
 
-class ProductsController{
+class UserCoontroller{
 
   async index(request: Request, response: Response){
-    const { data } = await dummyjsonApi.get("/products");
+    const { data } = await dummyjsonApi.get("/user");
 
     if(!data){
       throw new HttpError(400, "Service with dummyjsonApi don't working");
     }
 
-    const products = data.products;
-    return response.status(200).send(products)
+    const users = data.users;
+    return response.status(200).send(users);
   }
 
   async findById(request: Request, response: Response){
@@ -22,9 +22,9 @@ class ProductsController{
       throw new HttpError(404, "don't have item id");
     }
 
-    const { data } = await dummyjsonApi.get(`/products/${id}`);
+    const { data } = await dummyjsonApi.get(`/users/${id}`);
     return response.status(200).send(data);
   }
 };
 
-export default new ProductsController;
+export default new UserCoontroller;
