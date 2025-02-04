@@ -1,17 +1,11 @@
 import { Request, Response } from "express";
 import { HttpError } from "../../../shared/errors/http-error.class";
-import dummyjsonApi  from "../../providers/dummyjsonApi";
+import dummyjsonApi  from "../../providers/dummyjson.api";
 
 class ProductsController{
 
   async index(request: Request, response: Response){
-    const { data } = await dummyjsonApi.get("/products");
-
-    if(!data){
-      throw new HttpError(400, "Service with dummyjsonApi don't working");
-    }
-
-    const products = data.products;
+    const { products } = await dummyjsonApi("products");
     return response.status(200).send(products)
   }
 
@@ -22,7 +16,7 @@ class ProductsController{
       throw new HttpError(404, "don't have item id");
     }
 
-    const { data } = await dummyjsonApi.get(`/products/${id}`);
+    const data = await dummyjsonApi(`products/${id}`);
     return response.status(200).send(data);
   }
 };
