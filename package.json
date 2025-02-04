@@ -1,11 +1,11 @@
 {
   "name": "e-commerce_web",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only --clear src/server.ts",
-    "start": "ts-node src/server.ts"
+    "dev": "ts-node-dev --respawn --transpile-only --clear src/main.ts",
+    "start": "ts-node src/main.ts"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.3",
