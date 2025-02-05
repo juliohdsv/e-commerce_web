@@ -2,35 +2,43 @@ import supertest from "supertest";
 import { app } from "../../../src/app";
 
 const request = supertest(app);
+const expectedProperties = {
+  id: expect.any(Number),
+  firstName: expect.any(String),
+  gender: expect.any(String),
+  email: expect.any(String),
+  phone: expect.any(String),
+  username: expect.any(String),
+  password: expect.any(String),
+};
 
-describe("Integration test user controller", ()=>{
+const validateUser = (user: any) => {
+  expect(user).toMatchObject(expectedProperties);
+};
 
-  it("Index: list users", async ()=> {
-    const response = await request.get("/api/users");
-    const users = response.body[0];
+describe("Integration test - User controller", ()=>{
 
-    expect(response.status).toBe(200);
-    expect(Array.isArray(response.body)).toBe(true);
-    expect(users).toHaveProperty("id", expect.any(Number));
-    expect(users).toHaveProperty("firstName", expect.any(String));
-    expect(users).toHaveProperty("gender", expect.any(String));
-    expect(users).toHaveProperty("email", expect.any(String));
-    expect(users).toHaveProperty("phone", expect.any(String));
-    expect(users).toHaveProperty("username", expect.any(String));
-    expect(users).toHaveProperty("password", expect.any(String));
+  it("Index: should return users list with correct properties", async ()=> {
+    const { status, body } = await request.get("/api/users");
+
+    expect(status).toBe(200);
+    expect(Array.isArray(body)).toBe(true);
+    expect(body.length).toBeGreaterThan(0);
+    body.forEach(validateUser);
   });
 
-  it("findById: get user", async ()=> {
-    const response = await request.get("/api/users/1");
-    // const user = response.body[0];
+  it("findById: should return a user with correct properties", async ()=> {
+    const { status, body } = await request.get("/api/users/1");
+    const user = Array.isArray(body) ? body[0] : body;
 
-    expect(response.status).toBe(200);
-    // expect(user).toHaveProperty("id", expect.any(Number));
-    // expect(user).toHaveProperty("firstName", expect.any(String));
-    // expect(user).toHaveProperty("gender", expect.any(String));
-    // expect(user).toHaveProperty("email", expect.any(String));
-    // expect(user).toHaveProperty("phone", expect.any(String));
-    // expect(user).toHaveProperty("username", expect.any(String));
-    // expect(user).toHaveProperty("password", expect.any(String));
+    expect(status).toBe(200);
+    expect(user).toMatchObject(expectedProperties);
+  });
+
+  it("findById: should return 404 for a non-existent user", async () => {
+    const { status, body } = await request.get("/api/users/9999");
+
+    expect(status).toBe(404);
+    expect(body).toHaveProperty("User not found");
   });
 });

@@ -3,23 +3,34 @@ import { HttpError } from "./http-error.class";
 
 
 export const errorHandler = (
-  err: unknown,
+  error: unknown,
   request: Request,
   response: Response,
   next: NextFunction
 ) => {
 
-  const statusCode = err instanceof HttpError ? err.statusCode : 500;
-  const stack = process.env.NODE_ENV !== "production" && err instanceof Error ? err.stack : undefined;
-  const message = err instanceof HttpError ? err.message : "Internal Server Error";
+  let message: string;
+  let statusCode: number;
+  let stack: string | undefined;
 
-  console.log(err);
+  if (error instanceof HttpError) {
 
-  response.status(statusCode).json({
-    status: "error",
-    message,
-    ...(stack && { stack }),
-  });
+    statusCode = error.statusCode;
+    message = error.message;
+    stack = process.env.NODE_ENV === "development" ? error.stack : undefined;
 
-  next();
+    return response.status(statusCode).json({
+      status: "error",
+      message,
+      ...(stack && { stack }),
+    });
+   }
+  //  else {
+
+  //   statusCode = 500;
+  //   message = "Internal Server Error";
+  //   stack = process.env.NODE_ENV === "development" ? (error as Error).stack : undefined;
+  // }
+
+
 };

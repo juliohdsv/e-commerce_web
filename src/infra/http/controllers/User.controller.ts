@@ -11,12 +11,10 @@ class UserCoontroller{
 
   async findById(request: Request, response: Response){
     const { id } = request.params;
-
-    if(!id){
-      throw new HttpError(404, "don't have item id");
-    }
-
     const data = await dummyjsonApi(`users/${id}`);
+
+    if(!data){throw new HttpError(404, "User not found");}
+
     return response.status(200).send(data);
   }
 };
