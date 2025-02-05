@@ -3,7 +3,7 @@ import { app } from "../../src/app";
 
 const request = supertest(app);
 
-describe("Integration Test app:", () => {
+describe("Integration Test application:", () => {
   it("should return 200 OK with a success message", async () => {
     const response = await request.get("/api");
 
