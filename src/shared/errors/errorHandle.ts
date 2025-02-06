@@ -24,13 +24,9 @@ export const errorHandler = (
       message,
       ...(stack && { stack }),
     });
-   }
-  //  else {
+  }
 
-  //   statusCode = 500;
-  //   message = "Internal Server Error";
-  //   stack = process.env.NODE_ENV === "development" ? (error as Error).stack : undefined;
-  // }
-
-
+  statusCode = 500;
+  message = "Internal Server Error";
+  stack = process.env.NODE_ENV === "development" ? (error as Error).stack : undefined;
 };
