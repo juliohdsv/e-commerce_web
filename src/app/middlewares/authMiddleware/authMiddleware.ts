@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { HttpError } from "../../errors/http-error.class";
+import { HttpError } from "../../../shared/errors/http-error.class";
 
 export const tokenGenerate = (id: string)=> {
  try{

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { z } from "zod";
 
 import { User } from "../../../domain/entities/User";
-import { tokenGenerate } from "../../../shared/utils/token/token";
+import { tokenGenerate } from "../../../app/middlewares/authMiddleware/authMiddleware";
 import { dataHash } from "../../../shared/utils/crypt/crypt";
 import { HttpError } from "../../../shared/errors/http-error.class";
 import dummyjsonApi  from "../../providers/dummyjson.api";
@@ -38,7 +38,6 @@ class UserCoontroller{
     const hashedPassword = await dataHash(result.data.password);
     const user = new User({...result.data, password: hashedPassword});
     const token = tokenGenerate(user.id);
-    console.log(token);
 
     return response.status(201).send({user, token});
   }
