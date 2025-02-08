@@ -15,7 +15,7 @@ export const errorHandler = (
 
   if (error instanceof HttpError) {
 
-    statusCode = error.statusCode;
+    statusCode = error.status;
     message = error.message;
     stack = process.env.NODE_ENV === "development" ? error.stack : undefined;
 

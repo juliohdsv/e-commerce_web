@@ -1,4 +1,9 @@
 import { Request, Response } from "express";
+import { z } from "zod";
+
+import { User } from "../../../domain/entities/User";
+import { tokenGenerate } from "../../../shared/utils/token/token";
+import { dataHash } from "../../../shared/utils/crypt/crypt";
 import { HttpError } from "../../../shared/errors/http-error.class";
 import dummyjsonApi  from "../../providers/dummyjson.api";
 
@@ -16,6 +21,26 @@ class UserCoontroller{
     if(!data){throw new HttpError(404, "User not found");}
 
     return response.status(200).send(data);
+  }
+
+  async create(request: Request, response: Response){
+    const schema = z.object({
+      name: z.string().min(1).nonempty(),
+      email: z.string().email().min(1).nonempty(),
+      password: z.string().min(6).nonempty()
+    });
+    const result = schema.safeParse(request.body);
+
+    if(!result.success){
+      throw new HttpError(400, "The all fields required");
+    }
+
+    const hashedPassword = await dataHash(result.data.password);
+    const user = new User({...result.data, password: hashedPassword});
+    const token = tokenGenerate(user.id);
+    console.log(token);
+
+    return response.status(201).send({user, token});
   }
 };
 

@@ -14,6 +14,7 @@ router.get("/products/:id", ProductsController.findById);
 
 router.get("/users", UserController.index);
 router.get("/users/:id", UserController.findById);
+router.post("/users", UserController.create);
 
 router.get("/carts", CartsController.index);
 router.get("/carts/:id", CartsController.findById);

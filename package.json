@@ -9,9 +9,11 @@
     "start": "ts-node src/server.ts"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/dotenv": "^8.2.3",
     "@types/express": "4.17.17",
     "@types/jest": "^29.5.14",
+    "@types/jsonwebtoken": "^9.0.8",
     "@types/node": "^22.13.0",
     "@types/supertest": "^6.0.2",
     "@types/uuid": "^10.0.0",
@@ -25,11 +27,15 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@prisma/client": "^6.3.1",
     "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "dotenv-cli": "^8.0.0",
     "express": "^4.21.2",
     "express-async-errors": "^3.1.1",
-    "uuidv4": "^6.2.13"
+    "jsonwebtoken": "^9.0.2",
+    "uuidv4": "^6.2.13",
+    "zod": "^3.24.1"
   }
 }

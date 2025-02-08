@@ -1,4 +1,4 @@
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 
 export class User{
 
@@ -8,7 +8,7 @@ export class User{
   public password: string;
 
   constructor(props: Omit<User, "id">, id?: string){
-    this.id = id ?? uuid();
+    this.id = id ?? uuidv4();
     this.name = props.name;
     this.email = props.email;
     this.password = props.password;
