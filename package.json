@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest --watch",
     "dev": "tsx watch src/server.ts",
-    "start": "ts-node src/server.ts"
+    "start": "ts-node src/server.ts",
+    "cache": "yarn cache clean"
+
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

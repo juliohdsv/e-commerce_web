@@ -1,4 +1,4 @@
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 
 export class Product {
   public readonly id: string;
@@ -12,7 +12,7 @@ export class Product {
   public thumbnail: string[];
 
   constructor(props: Omit<Product, "id">, id?: string) {
-    this.id = id ?? uuid();
+    this.id = id ?? uuidv4();
     this.title = props.title;
     this.description = props.description;
     this.category = props.category;
