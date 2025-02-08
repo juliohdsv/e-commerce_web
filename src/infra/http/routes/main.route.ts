@@ -1,7 +1,6 @@
 import { Router, Request, Response } from "express";
 import ProductsController from "../controllers/Products.controller";
 import UserController from "../controllers/User.controller";
-import CartsController from "../controllers/Carts.controller";
 
 const router = Router();
 
@@ -12,11 +11,9 @@ router.get("/", (request: Request, response: Response) =>{
 router.get("/products", ProductsController.index);
 router.get("/products/:id", ProductsController.findById);
 
-router.get("/users", UserController.index);
+router.get("/users", UserController.show);
 router.get("/users/:id", UserController.findById);
 router.post("/users", UserController.create);
 
-router.get("/carts", CartsController.index);
-router.get("/carts/:id", CartsController.findById);
 
 export default router;

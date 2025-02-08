@@ -1,17 +1,18 @@
 import { Request, Response } from "express";
 import { z } from "zod";
 
-import { User } from "../../../domain/entities/User";
-import { tokenGenerate } from "../../../app/middlewares/authMiddleware/authMiddleware";
+import { User } from "../../../domain/entities/User.entities";
+import { tokenGenerate } from "../../../app/middlewares/authMiddleware/auth.middleware";
 import { dataHash } from "../../../shared/utils/crypt/crypt";
 import { HttpError } from "../../../shared/errors/http-error.class";
 import dummyjsonApi  from "../../providers/dummyjson.api";
-import { Email } from "../../../domain/value-objects/Email";
+
 class UserCoontroller{
 
-  async index(request: Request, response: Response){
-    const { users } = await dummyjsonApi("user");
-    return response.status(200).send(users);
+  async show(request: Request, response: Response): Promise<Response>{
+
+    // const { users } = await dummyjsonApi("user");
+    // return response.status(200).send(users);
   }
 
   async findById(request: Request, response: Response){
@@ -31,8 +32,7 @@ class UserCoontroller{
     });
 
       const result = schema.safeParse(request.body);
-      const email = new Email
-      console.log(email.value)
+
       if(!result.success){
         throw new HttpError(400, "The all fields required");
       }

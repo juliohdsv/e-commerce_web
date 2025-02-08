@@ -16,7 +16,7 @@ export const tokenGenerate = (id: string)=> {
 
 }
 
-export const tokenCompare = (token:string)=>{
+export const isAuthorizated = (token:string)=>{
   try{
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
     return decoded;
