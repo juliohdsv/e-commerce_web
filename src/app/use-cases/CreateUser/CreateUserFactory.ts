@@ -1,6 +1,6 @@
 import { CreateUserController } from "../../../infra/http/controllers/CreateUser.controller";
 import { CreateUserUseCase } from "./CreateUserUseCase";
-import { User } from "../../../domain/entities/User/UserEntitie";
+import { User } from "../../../domain/entities/User/User.entitie";
 import { IUserRepository } from "../../../domain/repositories/IUserRepository";
 
 export const CreateUserFactory = () =>{

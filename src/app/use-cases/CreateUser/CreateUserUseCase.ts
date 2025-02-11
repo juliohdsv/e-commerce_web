@@ -1,7 +1,7 @@
 import { ICreateUserRequestDTO } from "../../dtos/ICreateUserRequest.dto";
 import { IUserRepository } from "../../../domain/repositories/IUserRepository";
 import { HttpError } from "../../../shared/errors/http-error.class";
-import { User } from "../../../domain/entities/User/UserEntitie";
+import { User } from "../../../domain/entities/User/User.entitie";
 
 export class CreateUserUseCase{
   constructor(

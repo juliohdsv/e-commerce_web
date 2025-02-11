@@ -1,4 +1,4 @@
-import { User } from "./UserEntitie";
+import { User } from "./User.entitie";
 
 describe("Test unity: User entitie", ()=>{
 
