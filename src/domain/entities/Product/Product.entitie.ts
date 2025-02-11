@@ -1,4 +1,4 @@
-import { uuid } from "uuidv4";
+import { v4 as uuid } from "uuid";
 import { z } from "zod";
 import { HttpError } from "../../../shared/errors/http-error.class";
 
