@@ -6,8 +6,9 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "useUnknownInCatchVariables": false
   },
   "include": [
     "src/**/*.ts",
-  ]
+  ],
 }

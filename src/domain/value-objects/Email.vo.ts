@@ -1,9 +1,11 @@
 import { env } from "../../shared/utils/env/env";
 
-export class Email {
+class Email {
   public readonly value: string;
 
-  constructor(email: string = env.EMAIL_FROM) {
+  constructor(email:string = env.EMAIL_FROM) {
     this.value = email.toLowerCase();
   }
 };
+
+export default new Email;
