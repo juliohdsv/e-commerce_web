@@ -1,5 +1,5 @@
 import { app } from "./app";
-import { env } from "./shared/utils/env/env";
+import { env } from "./utils/env";
 
 const PORT:number = env.PORT || 3000;
 const ENV:string = env.ENV || "development";
