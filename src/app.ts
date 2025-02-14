@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { z } from 'zod';
-import{ prismaClient } from "./database/lib/PrismaClient";
+import{ prismaClient } from "./database/PrismaClient";
 import { User } from "./entities/User.entitie";
 
 const app = express();
